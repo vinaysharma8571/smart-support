@@ -22,7 +22,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-bold">Smart Support</h1>
-          <p className="text-xs text-slate-400">AI-powered ticket management</p>
+          <p className="text-xs text-slate-400">Smart Ticket Management</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
