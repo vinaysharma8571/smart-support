@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "@/lib/auth-client";
 
@@ -24,15 +25,25 @@ export default function Header() {
           <p className="text-xs text-slate-400">AI-powered ticket management</p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           {isPending ? (
             <span className="text-sm text-slate-400">Loading...</span>
           ) : user ? (
             <>
+              {role === "admin" && (
+                <Link
+                  href="/admin/users"
+                  className="rounded-lg border border-slate-600 px-3 py-1.5 text-sm hover:bg-slate-800"
+                >
+                  Manage users
+                </Link>
+              )}
+
               <div className="text-sm sm:text-right">
                 <p className="font-medium">{user.name}</p>
                 <p className="text-xs capitalize text-slate-400">{role}</p>
               </div>
+
               <button
                 onClick={handleLogout}
                 className="rounded-lg border border-slate-600 px-3 py-1.5 text-sm hover:bg-slate-800"
