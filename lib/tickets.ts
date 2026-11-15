@@ -1,12 +1,12 @@
 import prisma from "@/lib/prisma";
 
-type WithAssignee = { assigneeId: string | null };
+type WithPeople = { assigneeId: string | null; ownerId: string | null };
 
-export async function attachAssignees<T extends WithAssignee>(tickets: T[]) {
+export async function attachAssignees<T extends WithPeople>(tickets: T[]) {
   const ids = [
     ...new Set(
       tickets
-        .map((ticket) => ticket.assigneeId)
+        .flatMap((ticket) => [ticket.assigneeId, ticket.ownerId])
         .filter((id): id is string => id !== null)
     ),
   ];
@@ -26,5 +26,6 @@ export async function attachAssignees<T extends WithAssignee>(tickets: T[]) {
     assigneeName: ticket.assigneeId
       ? (names.get(ticket.assigneeId) ?? null)
       : null,
+    ownerName: ticket.ownerId ? (names.get(ticket.ownerId) ?? null) : null,
   }));
 }

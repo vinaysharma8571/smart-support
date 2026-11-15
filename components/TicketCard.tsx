@@ -60,6 +60,12 @@ export default function TicketCard({
         priority
       </p>
 
+      {isStaff && (
+        <p className="mt-1 text-sm text-gray-500">
+          Created by: {ticket.ownerName ?? "Unknown"}
+        </p>
+      )}
+
       <p className="mt-1 text-sm text-gray-500">
         Assigned to: {ticket.assigneeName ?? "Nobody yet"}
       </p>

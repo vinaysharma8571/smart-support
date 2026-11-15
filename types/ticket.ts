@@ -18,11 +18,12 @@ export type Ticket = {
   status: TicketStatus;
   assigneeId: string | null;
   assigneeName: string | null;
+  ownerName: string | null;
 };
 
 export type TicketInput = Omit<
   Ticket,
-  "id" | "status" | "assigneeId" | "assigneeName"
+  "id" | "status" | "assigneeId" | "assigneeName" | "ownerName"
 >;
 
 export type Agent = {
